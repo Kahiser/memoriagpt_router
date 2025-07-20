@@ -29,3 +29,10 @@ async def guardar_memoria(request: Request):
         return JSONResponse(status_code=response.status_code, content=response.json())
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
+
+
+# Este bloque debe ir FUERA del try/except
+if __name__ == "__main__":
+    import uvicorn
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port)
